@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950a16221d378a6468eb24d869ea4c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaId: 1
+  idCharacter: 0
   unlocked: 1
   cost: 0
   costUI: {fileID: 0}
@@ -2714,7 +2714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950a16221d378a6468eb24d869ea4c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaId: 3
+  idCharacter: 3
   unlocked: 0
   cost: 2000
   costUI: {fileID: 444228769}
@@ -2849,7 +2849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950a16221d378a6468eb24d869ea4c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaId: 2
+  idCharacter: 2
   unlocked: 0
   cost: 1000
   costUI: {fileID: 970321630}
@@ -3557,7 +3557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950a16221d378a6468eb24d869ea4c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaId: 1
+  idCharacter: 1
   unlocked: 1
   cost: 0
   costUI: {fileID: 0}

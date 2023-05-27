@@ -23,7 +23,7 @@ public class DropLogic : MonoBehaviour
             currentSpeed = startSpeed;
         }
 
-       
+        minDistance = player.gameObject.GetComponent<StatsLogic>().pullStrength.GetValue();
     }
 
     private void Start()

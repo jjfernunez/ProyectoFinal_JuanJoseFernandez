@@ -17,13 +17,41 @@ public class StatsLogic : MonoBehaviour
     public GameManager gm;
 
     public TMP_Text levelText;
-    // Start is called before the first frame update
-    void Start()
+    [Header("Starting Stats")]
+
+    public float initialArmor;
+    public float initialSpeed;
+    public float initialAttack;
+    public float initialPullStrength;
+
+    [Header ("Current Stats")]
+
+    public Stat armor;
+    public Stat speed;
+    public Stat attack;
+    public Stat pullStrength;
+    public float currentSpeed;
+
+    private void Awake()
     {
         playerLevel = 1;
         expIncrease = 10;
         maxExp = 100;
         currentExp = 0;
+
+
+        armor = new Stat("armor", initialArmor);
+        speed = new Stat("speed", initialSpeed);
+        attack = new Stat("attack", initialAttack);
+        pullStrength = new Stat("pullStrength", initialPullStrength);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+
+
     }
 
     // Update is called once per frame
@@ -32,6 +60,9 @@ public class StatsLogic : MonoBehaviour
         expBar.fillAmount = currentExp / maxExp;
 
         levelText.text = playerLevel.ToString();
+
+        currentSpeed = speed.GetValue();
+
     }
 
     public void CalculateExpIncrease(int exp)
@@ -57,4 +88,20 @@ public class StatsLogic : MonoBehaviour
         gm.LevelUpEvent();
     }
 
+}
+
+public class Stat
+{
+    public string name;
+    public float value;
+
+    public Stat(string name, float value)
+    {
+        this.name = name;
+        this.value = value;
+    }
+
+    public float GetValue(){ return value; }
+
+    public void SetValue(float value) { this.value = value; }
 }

@@ -3,14 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.EventSystems;
+using System;
+using TMPro;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class UpgradeLogic : MonoBehaviour, IPointerClickHandler
 {
-    public string statToUpgrade;
-    public int upgradeLevel;
-    public float upgradeAmount;
-    public string upgradeDesc;
+    public int idCharacter;
+    public string upgradeName;
+    public string statToIncrease;
+    public float increaseAmount;
+    public string description;
+    public string image;
     public GameManager manager;
+    public GameObject DB;
+
+
+    [Header ("UI Elements")]
+    public TMP_Text nameUpgrade;
+    public TMP_Text desc;
+    public UnityEngine.UI.Image imageSprite;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +39,35 @@ public class UpgradeLogic : MonoBehaviour, IPointerClickHandler
         
     }
 
+    public void OnEnable()
+    {
+        int randomNumber = UnityEngine.Random.Range(0, 4);
+        Debug.Log(randomNumber);
+       DB.GetComponent<GetUpgrades>().idCharacter = PlayerPrefs.GetInt("idCharacter");
+        StartCoroutine(DB.GetComponent<GetUpgrades>().GetAbilityFromDatabase());
+        upgradeName.Equals(DB.GetComponent<GetUpgrades>().array.data[randomNumber].upgradeName);
+        statToIncrease.Equals(DB.GetComponent<GetUpgrades>().array.data[randomNumber].statToIncrease);
+        increaseAmount = DB.GetComponent<GetUpgrades>().array.data[randomNumber].increaseAmount;
+        description.Equals(DB.GetComponent<GetUpgrades>().array.data[randomNumber].description);
+        image.Equals(DB.GetComponent<GetUpgrades>().array.data[randomNumber].image);
+
+        nameUpgrade.text.Equals(upgradeName);
+        desc.text.Equals (description);
+
+        var tex = new Texture2D(64, 64);
+        byte[] bytes = System.Convert.FromBase64String(image);
+        tex.LoadImage(bytes);
+        tex.Apply();
+        imageSprite.sprite = Sprite.Create(tex, new Rect(0, 0, 124, 119), new Vector2(0f, 0f));
+    }
+
+
     public void OnPointerClick(PointerEventData eventData) // 3
     {
         print("I was clicked");
         GameManager.gameIsPaused = false;
         GameManager.PauseGame();
-        manager.LevelUpUI.SetActive(false);
+        if(!manager.LevelUpUI.activeInHierarchy)
+            manager.LevelUpUI.SetActive(false);
     }
 }

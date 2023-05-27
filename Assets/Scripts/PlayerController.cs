@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Velocidad de movimiento del personaje
+    public float moveSpeed; // Velocidad de movimiento del personaje
     public float groundCheckRadius = 0.2f; // Radio de comprobación de colisión con el suelo
     public Transform groundCheck; // Transform del objeto utilizado para comprobar la colisión con el suelo
     public LayerMask whatIsGround; // Capa de objetos que representan el suelo
@@ -15,16 +15,31 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public int spriteSize;
 
+    private void Awake()
+    {
+        PlayerPrefs.SetInt("idCharacter", 1);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = this.gameObject.GetComponentInChildren<Animator>();
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        moveSpeed = this.gameObject.GetComponent<StatsLogic>().speed.GetValue();
        
+    }
+
+    private void Update()
+    {
+        if (moveSpeed != this.gameObject.GetComponent<StatsLogic>().speed.GetValue())
+            moveSpeed = this.gameObject.GetComponent<StatsLogic>().speed.GetValue();
     }
 
     void FixedUpdate()
     {
+        
+
         if (!GameManager.gameIsPaused)
         {
             float moveInputHorizontal = Input.GetAxisRaw("Horizontal");

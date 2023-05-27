@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class SelectCharacter : MonoBehaviour, IPointerClickHandler
 {
-    public int charaId;
+    public int idCharacter;
     public bool unlocked;
     public int cost;
     public TMP_Text costUI;
@@ -30,7 +30,7 @@ public class SelectCharacter : MonoBehaviour, IPointerClickHandler
     {
         if (unlocked)
         {
-            PlayerPrefs.SetInt("charaId", charaId);
+            PlayerPrefs.SetInt("idCharacter", idCharacter);
             SceneManager.LoadScene("Gameplay");
         }
         else
