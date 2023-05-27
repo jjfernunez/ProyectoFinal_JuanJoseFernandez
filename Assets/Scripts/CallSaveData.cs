@@ -9,7 +9,7 @@ public class CallSaveData : MonoBehaviour
     public int saveId;
     public GameObject[] savesObj;
     
-    void Start()
+    void Awake()
     {
         StartCoroutine(CallSave());
     }
@@ -45,7 +45,7 @@ public class CallSaveData : MonoBehaviour
                 for (int i = 0; i < data.saves.Length; i++)
                 {
                     savesObj[i].GetComponent<ShowData>().name.SetText(data.saves[i].name);
-                    savesObj[i].GetComponent<ShowData>().time_played.SetText(data.saves[i].time_played);
+                    savesObj[i].GetComponent<ShowData>().time = data.saves[i].time_played;
                     savesObj[i].GetComponent<ShowData>().money = data.saves[i].moneySaved;
                     savesObj[i].GetComponent<ShowData>().kills = data.saves[i].amountOfKills;
                 }

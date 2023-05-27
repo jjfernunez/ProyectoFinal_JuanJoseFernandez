@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int currentCoins;
     public int currentKills;
+    public int currentTimePlayed;
     private int storedCoins;
     public static bool gameIsPaused;
     public TMP_Text coinUI;

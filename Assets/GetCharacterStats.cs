@@ -32,14 +32,14 @@ public class GetCharacterStats : MonoBehaviour
         else
         {
             string response = www.downloadHandler.text;
-            Debug.Log("Respuesta del servidor: " + response);
+           
 
             if (!string.IsNullOrEmpty(www.downloadHandler.text))
             {
 
                 // Convertir el resultado de la petición a una lista de objetos JSON
                 array = JsonUtility.FromJson<Stats>("{\"data\":" + www.downloadHandler.text + "}");
-                Debug.Log(array.data[0].pullStrength);
+
                  }
             else
             {

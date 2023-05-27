@@ -36,7 +36,7 @@ public class GetUpgrades : MonoBehaviour
             else
             {
             string response = www.downloadHandler.text;
-            Debug.Log("Respuesta del servidor: " + response);
+            
 
             if (!string.IsNullOrEmpty(www.downloadHandler.text))
                 {

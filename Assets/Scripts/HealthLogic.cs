@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ public class HealthLogic : MonoBehaviour
             int amountOfKills = PlayerPrefs.GetInt("kills");
 
             GameObject gm = GameObject.Find("GameManager");
-            StartCoroutine(SendData(moneySaved + gm.GetComponent<GameManager>().currentCoins, amountOfKills + gm.GetComponent<GameManager>().currentKills));
+            StartCoroutine(gm.GetComponent<UITimer>().SendData(moneySaved + gm.GetComponent<GameManager>().currentCoins, amountOfKills + gm.GetComponent<GameManager>().currentKills, TimeSpan.FromSeconds(gm.GetComponent<UITimer>().time).ToString()));
 
             SceneManager.LoadScene("GameOver");
         }
@@ -45,7 +46,10 @@ public class HealthLogic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy")
+        {
+            currentHealth--;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
