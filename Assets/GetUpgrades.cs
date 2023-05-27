@@ -42,7 +42,7 @@ public class GetUpgrades : MonoBehaviour
                 {
 
                     // Convertir el resultado de la petición a una lista de objetos JSON
-                    array = JsonUtility.FromJson<Upgrades>("{\" data \":" + www.downloadHandler.text + "}");
+                    array = JsonUtility.FromJson<Upgrades>("{\"data\":" + www.downloadHandler.text + "}");
                     foreach(UpgradesData upg in array.data)
                 {
                     Debug.Log(upg.upgradeName);

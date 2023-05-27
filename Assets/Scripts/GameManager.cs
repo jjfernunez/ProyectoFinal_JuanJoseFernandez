@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject LevelUpUI;
     private static int saveId;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
         gameIsPaused = true;
         PauseGame();
+
         LevelUpUI.SetActive(true);
     }
 

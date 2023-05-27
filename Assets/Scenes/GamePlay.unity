@@ -490,11 +490,16 @@ MonoBehaviour:
   expIncrease: 10
   playerLevel: 1
   gm: {fileID: 1016267036}
+  DB: {fileID: 545859814}
   levelText: {fileID: 776601517}
   initialArmor: 10
   initialSpeed: 5
   initialAttack: 10
   initialPullStrength: 5
+  currentSpeed: 0
+  currentArmor: 0
+  currentAttack: 0
+  currentPullStrength: 0
 --- !u!114 &173539518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,8 +1625,8 @@ MonoBehaviour:
   image: 
   manager: {fileID: 1016267036}
   DB: {fileID: 545859814}
-  nameUpgrade: {fileID: 0}
-  desc: {fileID: 0}
+  nameUpgrade: {fileID: 1341676650}
+  desc: {fileID: 936617065}
   imageSprite: {fileID: 1694579674}
 --- !u!61 &520133611
 BoxCollider2D:
@@ -1697,6 +1702,8 @@ GameObject:
   m_Component:
   - component: {fileID: 545859815}
   - component: {fileID: 545859816}
+  - component: {fileID: 545859817}
+  - component: {fileID: 545859818}
   m_Layer: 0
   m_Name: DBManager
   m_TagString: Untagged
@@ -1734,6 +1741,35 @@ MonoBehaviour:
   idCharacter: 0
   upgrades: {fileID: 0}
   array:
+    data: []
+--- !u!114 &545859817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545859814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec12ccb690263804497d28580345bc41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idCharacter: 0
+  array:
+    data: []
+--- !u!114 &545859818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545859814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cfcb14a3f28ef84ab42ec2dc7153a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
     data: []
 --- !u!1 &575034096
 GameObject:

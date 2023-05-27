@@ -15,6 +15,7 @@ public class StatsLogic : MonoBehaviour
     public int expIncrease;
     public int playerLevel;
     public GameManager gm;
+    public GameObject DB;
 
     public TMP_Text levelText;
     [Header("Starting Stats")]
@@ -31,6 +32,10 @@ public class StatsLogic : MonoBehaviour
     public Stat attack;
     public Stat pullStrength;
     public float currentSpeed;
+    public float currentArmor;
+    public float currentAttack;
+    public float currentPullStrength;
+
 
     private void Awake()
     {
@@ -39,18 +44,14 @@ public class StatsLogic : MonoBehaviour
         maxExp = 100;
         currentExp = 0;
 
-
-        armor = new Stat("armor", initialArmor);
-        speed = new Stat("speed", initialSpeed);
-        attack = new Stat("attack", initialAttack);
-        pullStrength = new Stat("pullStrength", initialPullStrength);
+        StartCoroutine(InitializeStats());
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        
 
     }
 
@@ -62,7 +63,20 @@ public class StatsLogic : MonoBehaviour
         levelText.text = playerLevel.ToString();
 
         currentSpeed = speed.GetValue();
+        currentArmor = armor.GetValue();
+        currentAttack = attack.GetValue();
+        currentPullStrength = pullStrength.GetValue();
+        
 
+    }
+
+    public IEnumerator InitializeStats()
+    {
+        yield return StartCoroutine(DB.GetComponent<GetCharacterStats>().GetAbilityFromDatabase());
+        armor = new Stat("armor", DB.GetComponent<GetCharacterStats>().array.data[0].armor);
+        speed = new Stat("speed", DB.GetComponent<GetCharacterStats>().array.data[0].speed);
+        attack = new Stat("attack", DB.GetComponent<GetCharacterStats>().array.data[0].damage);
+        pullStrength = new Stat("pullStrength", DB.GetComponent<GetCharacterStats>().array.data[0].pullStrength);
     }
 
     public void CalculateExpIncrease(int exp)
@@ -88,6 +102,24 @@ public class StatsLogic : MonoBehaviour
         gm.LevelUpEvent();
     }
 
+    internal void IncreaseStat(string statToIncrease, float increaseAmount)
+    {
+        switch (statToIncrease)
+        {
+            case "armor":
+                armor.SetValue(armor.GetValue() + (armor.GetValue() * increaseAmount));
+                break;
+            case "speed":
+                speed.SetValue(speed.GetValue() + (speed.GetValue() * increaseAmount));
+                break;
+            case "attack":
+                attack.SetValue(attack.GetValue() + (attack.GetValue() * increaseAmount));
+                break;
+            case "pullStrength":
+                pullStrength.SetValue(pullStrength.GetValue() + (pullStrength.GetValue() * increaseAmount));
+                break;
+        }
+    }
 }
 
 public class Stat

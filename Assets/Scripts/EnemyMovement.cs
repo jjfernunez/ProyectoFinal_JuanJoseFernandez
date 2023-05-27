@@ -70,7 +70,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name.Equals("GamePlay"))
         {
-            GameObject.Find("GameManager").GetComponent<GameManager>().currentKills++;
+            manager.GetComponent<GameManager>().currentKills++;
 
             Instantiate(drop[0], this.transform.position + GenerateRandomPos(), drop[0].transform.rotation);
 

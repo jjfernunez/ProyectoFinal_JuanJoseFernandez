@@ -72,7 +72,7 @@ public class SelectAbilities : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("idHab", ability.data[selectedAbility].idHab);
         form.AddField("idPlayer", ability.data[selectedAbility].idPlayer);
-        form.AddField("name", name);
+        form.AddField("name", ability.data[selectedAbility].name);
         form.AddField("abilityLevel", ability.data[selectedAbility].abilityLevel + 1);
         form.AddField("increaseAmount", ability.data[selectedAbility].increaseAmount);
         form.AddField("upgradeCost", ability.data[selectedAbility].upgradeCost * 2);
