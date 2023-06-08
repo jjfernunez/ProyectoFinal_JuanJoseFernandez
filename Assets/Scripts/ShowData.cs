@@ -20,9 +20,11 @@ public class ShowData : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-
-        time = time.Substring(0, time.IndexOf("."));
-        time_played.SetText(time);
+        if (time != null)
+        {
+            time = time.Substring(0, time.IndexOf("."));
+            time_played.SetText(time);
+        }
     }
 
     // Update is called once per frame
